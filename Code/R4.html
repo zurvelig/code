@@ -1,0 +1,70 @@
+<!doctype html>
+ <html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Code</title>
+        <meta name="description" content="Aquí debes colocar la descripción del sitio web">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">Tabla</h1>
+                
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+
+                  <h1>Información</h1>
+                    <ul id="informacion"></ul>
+                          
+        </div> <!-- #main-container -->
+
+        
+        
+      
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/main.js"></script>
+
+        <script type="text/javascript">
+            function createNode(element) {
+                return document.createElement(element);
+            }
+
+            function append(parent, el) {
+              return parent.appendChild(el);
+            }
+
+            const ul = document.getElementById('informacion');
+            const url = 'https://randomuser.me/api/?results=10';
+
+            fetch(url)
+            .then((resp) => resp.json())
+            .then(function(data) {
+              let authors = data.results;
+              return authors.map(function(informacion) {
+                let li = createNode('li');
+                let span = createNode('span');
+                span.innerHTML = `${informacion.name.first} ${informacion.name.last} ${informacion.email} `;
+                append(li, span);
+                append(ul, li);
+              })
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        </script>
+       
+    </body>
+</html>
