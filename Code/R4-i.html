@@ -1,0 +1,90 @@
+<!doctype html>
+ <html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Code</title>
+        <meta name="description" content="Aquí debes colocar la descripción del sitio web">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">Tabla</h1>
+                
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+
+                 <!--<div class="table-wrapper-scroll-y">
+                    <table  class="table-responsive" id="mytable">
+                                         <thead>
+                                           <th>Nombre </th>
+                                           <th>Apellido </th>
+                                           <th>Email</th>
+                                         <tbody> 
+                                            foreach($informacion as $inf){
+                                              <tr>
+                                                <td>".$inf['name.first']."</td>
+                                                <td>".$inf['name.last']."</td>
+                                                <td>".$inf['name.email']."</td></tr>
+                                            }
+                                        </tbody>
+                                      </table>
+                                  </div>-->
+
+                  <h1>Información</h1>
+                    <ul id="informacion"></ul>
+                          
+        </div> <!-- #main-container -->
+
+                                        
+            <table>
+                <thead>
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Título</td>
+                        <td>Enlace</td>
+                    </tr>
+                </thead>
+                <tbody id="posts"></tbody>
+
+            </table>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+            <script>
+                var url = 'https://algo.mx/wp-json/wp/v2/posts';
+
+                $(document).ready(function () {
+                  var def = new jQuery.Deferred();
+                  $.ajax({
+                    url: url,
+                    jsonp: "cb",
+                    dataType: 'json',
+                    success: function (data) {
+                      console.log(data); //para saber si la llamada es correcta.
+                      $.each(data, function (index, item) {
+                        $('#posts').append('<tr><td>' + item.date + '</td><td>' + item.title.rendered + '</td><td>' + item.link + '</td></tr>'); //agregamos los elementos al tbody
+                      });           
+                    } 
+                  });  
+                }); 
+            </script>
+      
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/main.js"></script>
+     
+       
+    </body>
+</html>
